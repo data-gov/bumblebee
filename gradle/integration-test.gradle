@@ -1,0 +1,25 @@
+sourceSets {
+  integrationTest {
+    compileClasspath += main.output + test.output
+    runtimeClasspath += main.output + test.output
+    java.srcDirs = ['src/test/integration/kotlin']
+  }
+}
+
+configurations {
+  integrationTestCompile.extendsFrom testCompile
+  integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test) {
+  integrationTest.testClassesDirs = sourceSets.integrationTest.output.classesDirs
+  classpath = sourceSets.integrationTest.runtimeClasspath
+
+  reports.html.destination = file("${reporting.baseDir}/${name}")
+}
+
+idea {
+  module {
+    scopes.TEST.plus += [configurations.integrationTestCompile]
+  }
+}

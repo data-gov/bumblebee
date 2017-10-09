@@ -1,0 +1,9 @@
+task createCommitMessageHook(type: Copy) {
+  if (System.getenv('CI') == "false") {
+    from("${projectDir}/config/github/commit-msg")
+    into(".git/hooks")
+    fileMode = 0775
+  }
+}
+
+compileKotlin.finalizedBy createCommitMessageHook

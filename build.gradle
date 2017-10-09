@@ -1,0 +1,96 @@
+buildscript {
+  ext {
+    kotlinVersion = "1.1.50"
+    junitGradleVersion = "1.0.0"
+    junitJupiterVerison = "5.0.0"
+    springBootVersion = "2.0.0.BUILD-SNAPSHOT"
+  }
+
+  repositories {
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+    maven { url "https://repo.spring.io/libs-snapshot" }
+    maven { url "https://repo.spring.io/libs-milestone" }
+  }
+
+  dependencies {
+    classpath "com.gradle:build-scan-plugin:1.9"
+    classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+    classpath "org.junit.platform:junit-platform-gradle-plugin:$junitGradleVersion"
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC4-3"
+  }
+}
+
+apply plugin: "com.gradle.build-scan"
+
+apply plugin: "idea"
+apply plugin: "jacoco"
+apply plugin: "jdepend"
+apply plugin: "findbugs"
+apply plugin: "application"
+apply plugin: "kotlin-spring"
+apply plugin: "org.springframework.boot"
+apply plugin: "org.jetbrains.kotlin.jvm"
+apply plugin: "io.gitlab.arturbosch.detekt"
+apply plugin: "io.spring.dependency-management"
+apply plugin: "org.junit.platform.gradle.plugin"
+
+sourceCompatibility = 1.8
+mainClassName = "br.com.bumblebee.ApplicationKt"
+
+repositories {
+  mavenCentral()
+  maven { url "https://repo.spring.io/libs-snapshot" }
+  maven { url "https://repo.spring.io/libs-milestone" }
+}
+
+dependencyManagement {
+  imports {
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.BUILD-SNAPSHOT"
+    mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+  }
+}
+
+dependencies {
+  compile "org.jetbrains.kotlin:kotlin-reflect"
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
+
+  compile "org.slf4j:slf4j-api:1.7.25"
+  compile "com.squareup.okhttp3:okhttp:3.9.0"
+  compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
+
+  compile "org.springframework.boot:spring-boot-starter-web"
+  compile "org.springframework.boot:spring-boot-starter-actuator"
+  compile "org.springframework.cloud:spring-cloud-starter-feign:$springBootVersion"
+  compile "org.springframework.cloud:spring-cloud-starter-hystrix:$springBootVersion"
+
+  testCompile "org.mockito:mockito-core:2.10.0"
+  testCompile "org.jetbrains.kotlin:kotlin-test-junit"
+  testCompile "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
+  testCompile "com.jayway.restassured:rest-assured:2.9.0"
+  testCompile "org.springframework.boot:spring-boot-starter-test"
+  testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVerison"
+
+  testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVerison"
+}
+
+task wrapper(type: Wrapper) {
+  description = "Generates gradlew[.bat] scripts"
+  gradleVersion = "4.2"
+}
+
+apply from: "${rootProject.rootDir}/gradle/git.gradle"
+apply from: "${rootProject.rootDir}/gradle/junit.gradle"
+apply from: "${rootProject.rootDir}/gradle/kotlin.gradle"
+apply from: "${rootProject.rootDir}/gradle/linter.gradle"
+apply from: "${rootProject.rootDir}/gradle/jdepend.gradle"
+apply from: "${rootProject.rootDir}/gradle/findbugs.gradle"
+apply from: "${rootProject.rootDir}/gradle/coverage.gradle"
+apply from: "${rootProject.rootDir}/gradle/unit-test.gradle"
+apply from: "${rootProject.rootDir}/gradle/build-scan.gradle"
+apply from: "${rootProject.rootDir}/gradle/integration-test.gradle"
+
+defaultTasks "clean", "compileKotlin", "detektFormat", "findbugsMain", "junitPlatformJacocoReport", "bootJar"

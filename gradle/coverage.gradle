@@ -1,0 +1,30 @@
+project.afterEvaluate {
+  def junitPlatformTestTask = project.tasks.getByName('junitPlatformTest')
+
+  jacoco {
+    toolVersion = "0.7.9"
+    applyTo junitPlatformTestTask
+  }
+
+  project.task(type: JacocoReport, "junitPlatformJacocoReport", {
+    dependsOn junitPlatformTestTask
+    sourceDirectories = files("src/main")
+    classDirectories = fileTree(
+      dir: "${buildDir}/classes/kotlin/main",
+      excludes: [
+        "**/Application*",
+        "**/model/**"
+      ]
+    )
+    executionData junitPlatformTestTask
+
+    reports {
+      xml.enabled true
+      html.enabled true
+
+      xml.destination file("${reportsDir}/jacoco/report.xml")
+      html.destination file("${reportsDir}/jacoco/html")
+    }
+  })
+}
+

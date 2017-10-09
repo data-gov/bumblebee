@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: bumblebee
+
+camara:
+  api: https://dadosabertos.camara.leg.br/api/v2/
+
+feign:
+  okhttp:
+    enabled: true
+
+logging:
+  level:
+    br.com.bumblebee.congressman.client.CongressmanClient: DEBUG

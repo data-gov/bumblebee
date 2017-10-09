@@ -1,0 +1,13 @@
+jdependMain {
+  reports {
+    xml.enabled false
+    text.enabled true
+  }
+}
+
+jdependTest {
+  reports {
+    xml.enabled false
+    text.enabled true
+  }
+}

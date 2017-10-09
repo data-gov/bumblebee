@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+$messagefile = ARGV[0]
+
+$regex = /(feat|fix|ci|docs|style|refactor|perf|test|chore|build|revert)+(\([a-zA-Z].*\))?:+(\s)+([a-zA-Z]).*/
+
+# enforced custom commit message format
+def check_message_format
+    f = File.open($messagefile, "r")
+    if !$regex.match(f.readline)
+        puts "***************************************************************************************"
+        puts "*                              **** COMMIT BLOQUEADO ****"
+        puts "*"
+        puts "* Seu commit foi bloqueado devido a uma mensagem incorreta."
+        puts "*"
+        puts "* Garanta que seu commit contenha a mensagem nos seguintes formatos:"
+        puts "* feat: Nova feature"
+        puts "* ci: Mudanças em relação a integração continua"
+        puts "* fix: Correçao de bugs"
+        puts "* docs: Mudanças na documentação"
+        puts "* style: Mudanças de estilo de código. Ex: Indentação, formataçao, etc."
+        puts "* refactor: Refatoração de código"
+        puts "* perf: Mudanças relativas a performance"
+        puts "* test: Adiçao de testes"
+        puts "* chore: Outras mudanças que nao modificam src ou test"
+        puts "* build: Mudanças que afetam a build ou dependencias externas"
+        puts "* revert: Reverte commits anteriores"
+        puts "*"
+        puts "*     -- Obrigado"
+        puts "***************************************************************************************"
+        exit 1
+    end
+    f.close
+end
+check_message_format

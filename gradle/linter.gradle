@@ -1,0 +1,10 @@
+detekt {
+  profile("main") {
+    input = "$projectDir/src/main/kotlin"
+    config = "$projectDir/config/linter/detekt.yml"
+    output = "$reportsDir/detekt"
+    disableDefaultRuleSets = false
+    outputName = "bumblebee"
+    parallel = true
+  }
+}

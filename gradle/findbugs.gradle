@@ -1,0 +1,14 @@
+findbugs {
+  ignoreFailures = true
+  showProgress = true
+}
+
+
+tasks.withType(FindBugs) {
+  reports {
+    xml.enabled false
+    html.enabled true
+  }
+}
+
+findbugsMain.finalizedBy findbugsTest
