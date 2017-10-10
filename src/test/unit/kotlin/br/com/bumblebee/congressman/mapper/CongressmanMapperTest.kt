@@ -16,5 +16,6 @@ internal class CongressmanMapperTest {
         assertEquals(actual, expected)
     }
 
-    private fun aCongressman() = CongressmanClientModel(1, "URI", "Congressman Name", "PPP", "PPP URI", "UF", 1, "Photo URI")
+    private fun aCongressman() =
+        CongressmanClientModel(1, "URI", "Congressman Name", "PPP", "PPP URI", "UF", 1, "Photo URI")
 }
