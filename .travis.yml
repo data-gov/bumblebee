@@ -24,6 +24,7 @@ stages:
   - compile
   - linter
   - test
+  - integrationTest
 
 jobs:
   include:
@@ -34,6 +35,10 @@ jobs:
   - stage: linter
     script:
     - "./gradlew detektFormat"
+
+  - stage: integrationTest
+    script:
+    - "./gradlew integrationTest"
 
   - stage: test
     script:
