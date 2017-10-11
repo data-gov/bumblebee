@@ -7,7 +7,7 @@ import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 
-@FeignClient(name = "client", url = "\${camara.api}", configuration = arrayOf(FeignConfiguration::class))
+@FeignClient(name = "congressman", url = "\${camara.api}", configuration = arrayOf(FeignConfiguration::class))
 interface CongressmanClient {
 
     @GetMapping(path = arrayOf("deputados"), produces = arrayOf(APPLICATION_JSON_UTF8_VALUE))
