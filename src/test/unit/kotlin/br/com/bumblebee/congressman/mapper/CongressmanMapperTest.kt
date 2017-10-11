@@ -1,32 +1,21 @@
 package br.com.bumblebee.congressman.mapper
 
-import br.com.bumblebee.congressman.repository.ExpenseRepository
-import br.com.bumblebee.congressman.repository.model.Expense
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.DisplayName
+import br.com.bumblebee.congressman.client.model.CongressmanClientModel
+import br.com.bumblebee.congressman.client.model.CongressmanClientResponse
+import br.com.bumblebee.congressman.controller.model.CongressmanResponse
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.junit.jupiter.SpringExtension
+import kotlin.test.assertEquals
 
-@ExtendWith(SpringExtension::class)
-@SpringBootTest
-internal class ExpenseRepositoryTest {
-
-    @Autowired
-    private lateinit var repository: ExpenseRepository
-
-    @BeforeEach
-    fun setUp() = repository.deleteAll()
+internal class CongressmanMapperTest {
 
     @Test
-    @DisplayName("Should save a congressman expense into mongodb")
-    fun assertThatExpenseIseBeingSaved() {
-        repository.save(Expense("SUPER_COOL_ID"))
-        val allExpenses = repository.findAll()
+    fun shouldTransformCongressmanClientResponseIntoCongressmanResponse() {
+        val actual = toCongressmanResponse(CongressmanClientResponse(listOf(aCongressman())))
+        val expected = listOf(CongressmanResponse(1, "Congressman Name", "PPP", "UF", "Photo URI"))
 
-        Assertions.assertEquals(1, allExpenses.size)
+        assertEquals(actual, expected)
     }
+
+    private fun aCongressman() =
+        CongressmanClientModel(1, "URI", "Congressman Name", "PPP", "PPP URI", "UF", 1, "Photo URI")
 }
