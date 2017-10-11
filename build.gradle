@@ -64,6 +64,7 @@ dependencies {
 
   compile "org.springframework.boot:spring-boot-starter-web"
   compile "org.springframework.boot:spring-boot-starter-actuator"
+  compile "org.springframework.data:spring-data-mongodb"
   compile "org.springframework.cloud:spring-cloud-starter-feign:$springBootVersion"
   compile "org.springframework.cloud:spring-cloud-starter-hystrix:$springBootVersion"
 
@@ -73,6 +74,7 @@ dependencies {
   testCompile "com.jayway.restassured:rest-assured:2.9.0"
   testCompile "org.springframework.boot:spring-boot-starter-test"
   testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVerison"
+  testCompile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0"
 
   testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVerison"
 }
