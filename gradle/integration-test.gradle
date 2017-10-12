@@ -2,7 +2,7 @@ sourceSets {
   integrationTest {
     compileClasspath += main.output + test.output
     runtimeClasspath += main.output + test.output
-    java.srcDirs = ['src/test/integration/kotlin']
+    kotlin.srcDirs = ['src/test/integration/kotlin']
   }
 }
 
@@ -15,7 +15,9 @@ task integrationTest(type: Test) {
   integrationTest.testClassesDirs = sourceSets.integrationTest.output.classesDirs
   classpath = sourceSets.integrationTest.runtimeClasspath
 
-  reports.html.destination = file("${reporting.baseDir}/${name}")
+  reports {
+    html.destination file("${reporting.baseDir}/tests/integration-test")
+  }
 }
 
 idea {

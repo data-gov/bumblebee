@@ -3,7 +3,7 @@ package br.com.bumblebee.congressman.mapper
 import br.com.bumblebee.congressman.client.model.CongressmanClientModel
 import br.com.bumblebee.congressman.client.model.CongressmanClientResponse
 import br.com.bumblebee.congressman.controller.model.CongressmanResponse
-import org.junit.jupiter.api.Test
+import org.junit.Test
 import kotlin.test.assertEquals
 
 internal class CongressmanMapperTest {
