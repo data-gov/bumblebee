@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam
 @RequestMapping(produces = arrayOf(APPLICATION_JSON_UTF8_VALUE))
 interface ExpenseClient {
 
-    @GetMapping("deputados/{congressmanId}/despesas")
+    @GetMapping("deputados/{id}/despesas")
     fun getCongressmanExpenses(
-        @PathVariable(name = "congressmanId") id: Int,
+        @PathVariable(name = "id") id: Int,
         @RequestParam(name = "pagina") page: Int = 1
     ): ExpenseClientResponse
 
