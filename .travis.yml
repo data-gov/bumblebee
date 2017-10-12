@@ -49,7 +49,5 @@ jobs:
   - stage: coverage
     script:
     - "./gradlew jacocoTestReport"
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r build/reports/jacoco/report.xml
+    - bash <(curl -s https://codecov.io/bash)
+    - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r build/reports/jacoco/report.xml
