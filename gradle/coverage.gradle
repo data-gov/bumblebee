@@ -9,6 +9,9 @@ test {
 }
 
 jacocoTestReport {
+  dependsOn test
+  dependsOn integrationTest
+
   reports {
     xml.enabled true
     html.enabled true
@@ -28,5 +31,3 @@ jacocoTestReport {
     )
   }
 }
-
-check.dependsOn jacocoTestReport

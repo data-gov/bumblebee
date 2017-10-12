@@ -84,10 +84,10 @@ apply from: "${rootProject.rootDir}/gradle/kotlin.gradle"
 apply from: "${rootProject.rootDir}/gradle/linter.gradle"
 apply from: "${rootProject.rootDir}/gradle/jdepend.gradle"
 apply from: "${rootProject.rootDir}/gradle/findbugs.gradle"
-apply from: "${rootProject.rootDir}/gradle/coverage.gradle"
 apply from: "${rootProject.rootDir}/gradle/unit-test.gradle"
 apply from: "${rootProject.rootDir}/gradle/build-scan.gradle"
 apply from: "${rootProject.rootDir}/gradle/integration-test.gradle"
+apply from: "${rootProject.rootDir}/gradle/coverage.gradle"
 
 defaultTasks "clean", "compileKotlin", "detektFormat", "findbugsMain", "test", "integrationTest", "jacocoTestReport",
   "bootJar"
