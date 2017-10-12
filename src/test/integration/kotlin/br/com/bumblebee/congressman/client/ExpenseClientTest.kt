@@ -1,7 +1,13 @@
 package br.com.bumblebee.congressman.client
 
 import br.com.bumblebee.congressman.client.model.ExpenseClientResponse
-import com.github.tomakehurst.wiremock.client.WireMock.*
+import com.github.tomakehurst.wiremock.client.WireMock.equalTo
+import com.github.tomakehurst.wiremock.client.WireMock.get
+import com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor
+import com.github.tomakehurst.wiremock.client.WireMock.givenThat
+import com.github.tomakehurst.wiremock.client.WireMock.okJson
+import com.github.tomakehurst.wiremock.client.WireMock.urlMatching
+import com.github.tomakehurst.wiremock.client.WireMock.verify
 import com.github.tomakehurst.wiremock.junit.WireMockRule
 import org.junit.Before
 import org.junit.Rule
@@ -12,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import org.springframework.test.context.junit4.SpringRunner
 import java.nio.file.Files.readAllBytes
-import java.nio.file.Paths.get
+import java.nio.file.Paths
 import kotlin.test.assertEquals
 
 @SpringBootTest
@@ -32,7 +38,7 @@ internal class ExpenseClientTest {
 
     @Before
     fun setUp() {
-        val expensesJson = String(readAllBytes(get(EXPENSE_FIXTURE_PATH)))
+        val expensesJson = String(readAllBytes(Paths.get(EXPENSE_FIXTURE_PATH)))
 
         givenThat(
             get(urlMatching(EXPENSE_ENDPOINT))
