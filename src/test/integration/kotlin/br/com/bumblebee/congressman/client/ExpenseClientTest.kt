@@ -15,13 +15,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
 import java.nio.file.Files.readAllBytes
 import java.nio.file.Paths
 import kotlin.test.assertEquals
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 
 @ActiveProfiles(INTEGRATION)
 @RunWith(SpringRunner::class)
@@ -33,6 +33,7 @@ internal class ExpenseClientTest {
         const val EXPENSE_ENDPOINT = "/deputados/136811/despesas?.*"
         const val CONGRESSMAN_ID = 136811
         const val WIREMOCK_PORT = 9000
+        const val EXPECTED_EXPENSES_SIZE = 15
     }
 
     @get:Rule
@@ -56,7 +57,6 @@ internal class ExpenseClientTest {
     @Test
     fun shouldGetListOfExpenses() {
         val congressmanExpenses = client.getCongressmanExpenses(CONGRESSMAN_ID)
-        val expectedExpenseSize = 15
 
         verify(
             getRequestedFor(urlMatching(EXPENSE_ENDPOINT))
@@ -64,6 +64,6 @@ internal class ExpenseClientTest {
             .withQueryParam("pagina", equalTo("1"))
         )
 
-        assertEquals(expectedExpenseSize, congressmanExpenses.expenses.size)
+        assertEquals(EXPECTED_EXPENSES_SIZE, congressmanExpenses.expenses.size)
     }
 }
