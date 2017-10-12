@@ -1,7 +1,7 @@
 package br.com.bumblebee.congressman.client.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import java.util.*
+import java.util.Date
 
 data class ExpenseClientResponse(@JsonProperty("dados") val expenses: List<ExpenseClientModel>)
 
