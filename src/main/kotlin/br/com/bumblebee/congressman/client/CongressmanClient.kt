@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam
 @FeignClient(name = "congressman", url = "\${camara.api}", configuration = arrayOf(FeignConfiguration::class))
 interface CongressmanClient {
 
-    @GetMapping(path = arrayOf("deputados"), produces = arrayOf(APPLICATION_JSON_UTF8_VALUE))
+    @GetMapping(path = arrayOf("/deputados"), produces = arrayOf(APPLICATION_JSON_UTF8_VALUE))
     fun getAll(@RequestParam(name = "pagina") page: Int = 1): CongressmanClientResponse
 
 }
