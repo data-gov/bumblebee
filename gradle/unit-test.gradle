@@ -1,5 +1,5 @@
 sourceSets {
   test {
-    java.srcDirs = ['src/test/unit/kotlin']
+    kotlin.srcDirs = ['src/test/unit/kotlin']
   }
 }

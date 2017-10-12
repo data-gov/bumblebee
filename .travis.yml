@@ -22,9 +22,10 @@ branches:
 
 stages:
   - compile
-  - linter
+  - code-quality
   - test
   - integrationTest
+  - coverage
 
 jobs:
   include:
@@ -32,16 +33,23 @@ jobs:
     script:
     - "./gradlew compileKotlin"
 
-  - stage: linter
+  - stage: code-quality
     script:
     - "./gradlew detektFormat"
+    - "./gradlew findbugsMain"
+
+  - stage: test
+    script:
+    - "./gradlew test"
 
   - stage: integrationTest
     script:
     - "./gradlew integrationTest"
 
-  - stage: test
+  - stage: coverage
     script:
-    - "./gradlew junitPlatformJacocoReport"
-    - bash <(curl -s https://codecov.io/bash)
-    - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r build/reports/jacoco/report.xml
+    - "./gradlew jacocoTestReport"
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r build/reports/jacoco/report.xml
