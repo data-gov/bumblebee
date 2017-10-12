@@ -12,3 +12,9 @@ feign:
 logging:
   level:
     br.com.bumblebee.congressman.client.CongressmanClient: DEBUG
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 0
