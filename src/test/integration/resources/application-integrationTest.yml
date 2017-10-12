@@ -1,3 +1,10 @@
+camara:
+  api: http://localhost:9000/
+
+logging:
+  level:
+    br.com.bumblebee.congressman.client: ALL
+
 spring:
   data:
     mongodb:
