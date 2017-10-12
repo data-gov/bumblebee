@@ -6,7 +6,6 @@ feign:
   okhttp:
     enabled: true
 
-
 logging:
   level:
     br.com.bumblebee.congressman.client: DEBUG

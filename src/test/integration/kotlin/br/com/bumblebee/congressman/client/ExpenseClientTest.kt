@@ -1,6 +1,6 @@
 package br.com.bumblebee.congressman.client
 
-import br.com.bumblebee.congressman.client.model.ExpenseClientResponse
+import br.com.bumblebee.configuration.environment.INTEGRATION
 import com.github.tomakehurst.wiremock.client.WireMock.equalTo
 import com.github.tomakehurst.wiremock.client.WireMock.get
 import com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor
@@ -16,22 +16,27 @@ import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
 import java.nio.file.Files.readAllBytes
 import java.nio.file.Paths
 import kotlin.test.assertEquals
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 
-@SpringBootTest
+@ActiveProfiles(INTEGRATION)
 @RunWith(SpringRunner::class)
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 internal class ExpenseClientTest {
 
-    private val EXPENSE_FIXTURE_PATH = "src/test/integration/resources/fixtures/expenses/congressman136811.json"
-    private val EXPENSE_ENDPOINT = "/deputados/136811/despesas?.*"
-    private val CONGRESSMAN_ID = 136811
+    companion object {
+        const val EXPENSE_FIXTURE_PATH = "src/test/integration/resources/fixtures/expenses/congressman136811.json"
+        const val EXPENSE_ENDPOINT = "/deputados/136811/despesas?.*"
+        const val CONGRESSMAN_ID = 136811
+        const val WIREMOCK_PORT = 9000
+    }
 
-    @Rule
-    @JvmField
-    final val wireMockRule = WireMockRule(9000)
+    @get:Rule
+    val wireMockRule = WireMockRule(WIREMOCK_PORT)
 
     @Autowired
     private lateinit var client: ExpenseClient
@@ -50,7 +55,8 @@ internal class ExpenseClientTest {
 
     @Test
     fun shouldGetListOfExpenses() {
-        val congressmanExpenses: ExpenseClientResponse = client.getCongressmanExpenses(CONGRESSMAN_ID)
+        val congressmanExpenses = client.getCongressmanExpenses(CONGRESSMAN_ID)
+        val expectedExpenseSize = 15
 
         verify(
             getRequestedFor(urlMatching(EXPENSE_ENDPOINT))
@@ -58,6 +64,6 @@ internal class ExpenseClientTest {
             .withQueryParam("pagina", equalTo("1"))
         )
 
-        assertEquals(15, congressmanExpenses.expenses.size)
+        assertEquals(expectedExpenseSize, congressmanExpenses.expenses.size)
     }
 }

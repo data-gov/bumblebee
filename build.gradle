@@ -56,6 +56,7 @@ dependencies {
 
   compile "org.slf4j:slf4j-api:1.7.25"
   compile "com.squareup.okhttp3:okhttp:3.9.0"
+  compile "com.netflix.feign:feign-okhttp:8.18.0"
   compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
 
   compile "org.springframework.data:spring-data-mongodb"
