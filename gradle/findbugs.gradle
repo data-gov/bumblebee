@@ -1,5 +1,5 @@
 findbugs {
-  ignoreFailures = true
+  ignoreFailures = false
   showProgress = true
 }
 

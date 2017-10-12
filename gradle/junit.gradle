@@ -1,7 +1,0 @@
-junitPlatform {
-  filters {
-    engines {
-      include "junit-jupiter"
-    }
-  }
-}
