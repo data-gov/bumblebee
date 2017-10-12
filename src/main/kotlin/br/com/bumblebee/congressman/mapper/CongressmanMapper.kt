@@ -9,4 +9,3 @@ fun toCongressmanResponse(clientResponse: CongressmanClientResponse) =
 
 private fun toCongressman(model: CongressmanClientModel) =
     CongressmanResponse(model.id, model.name, model.partyAcronym, model.stateAcronym, model.photoUrl)
-

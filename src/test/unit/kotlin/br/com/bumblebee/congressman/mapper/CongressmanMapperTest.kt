@@ -3,8 +3,8 @@ package br.com.bumblebee.congressman.mapper
 import br.com.bumblebee.congressman.client.model.CongressmanClientModel
 import br.com.bumblebee.congressman.client.model.CongressmanClientResponse
 import br.com.bumblebee.congressman.controller.model.CongressmanResponse
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import kotlin.test.assertEquals
 
 internal class CongressmanMapperTest {
 
@@ -13,7 +13,7 @@ internal class CongressmanMapperTest {
         val actual = toCongressmanResponse(CongressmanClientResponse(listOf(aCongressman())))
         val expected = listOf(CongressmanResponse(1, "Congressman Name", "PPP", "UF", "Photo URI"))
 
-        assertEquals(actual, expected)
+        assertThat(actual).isEqualTo(expected)
     }
 
     private fun aCongressman() =

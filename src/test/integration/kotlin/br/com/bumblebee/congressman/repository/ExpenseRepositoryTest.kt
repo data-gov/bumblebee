@@ -1,14 +1,17 @@
 package br.com.bumblebee.congressman.repository
 
+import br.com.bumblebee.configuration.environment.INTEGRATION
 import br.com.bumblebee.congressman.repository.model.Expense
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
 import kotlin.test.assertEquals
 
+@ActiveProfiles(INTEGRATION)
 @SpringBootTest
 @RunWith(SpringRunner::class)
 internal class ExpenseRepositoryTest {
