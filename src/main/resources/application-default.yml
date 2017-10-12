@@ -1,0 +1,8 @@
+camara:
+  api: https://dadosabertos.camara.leg.br/api/v2/
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 0
