@@ -8,12 +8,22 @@ import br.com.bumblebee.congressman.repository.model.Receipt
 
 fun toExpenseResponse(response: ExpenseClientResponse) = response.expenses.map { toExpense(it) }
 
-private fun toExpense(model: ExpenseClientModel): Expense {
-    val provider = Provider(
-        model.provider,
-        model.providerId
+private fun toExpense(model: ExpenseClientModel): Expense =
+    Expense(
+        model.year,
+        model.month,
+        model.lotId,
+        model.parcel,
+        model.kind,
+        model.netValue,
+        createReceipt(model),
+        model.refundNumber,
+        model.glossValue,
+        createProvider(model)
     )
-    val receipt = Receipt(
+
+private fun createReceipt(model: ExpenseClientModel): Receipt =
+    Receipt(
         model.documentId,
         model.documentDate,
         model.documentKindId,
@@ -22,16 +32,9 @@ private fun toExpense(model: ExpenseClientModel): Expense {
         model.documentValue,
         model.documentKind
     )
-    return Expense(
-        model.year,
-        model.month,
-        model.lotId,
-        model.parcel,
-        model.kind,
-        model.netValue,
-        receipt,
-        model.refundNumber,
-        model.glossValue,
-        provider
+
+private fun createProvider(model: ExpenseClientModel): Provider =
+    Provider(
+        model.provider,
+        model.providerId
     )
-}
