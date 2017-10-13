@@ -28,7 +28,6 @@ private fun toExpense(model: ExpenseClientModel): Expense {
         model.lotId,
         model.parcel,
         model.kind,
-        0,
         model.netValue,
         receipt,
         model.refundNumber,

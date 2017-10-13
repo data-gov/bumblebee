@@ -11,7 +11,6 @@ data class Expense(
     val lotId: Int,
     val parcel: Int,
     val kind: String,
-    @Id val id: Int,
     val netValue: Float,
     val receipt: Receipt,
     val refundNumber: Int,
