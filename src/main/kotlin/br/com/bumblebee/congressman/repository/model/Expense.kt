@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.util.Date
 
-@Document(collection = "expense")
+@Document(collection = "expenses")
 data class Expense(
     val year: Int,
     val month: Int,
@@ -18,7 +18,7 @@ data class Expense(
     val provider: Provider
     )
 
-@Document(collection = "expense")
+@Document(collection = "expenses")
 data class Receipt(
     @Id val id: Int,
     val date: Date,
@@ -29,7 +29,7 @@ data class Receipt(
     val kind: String
     )
 
-@Document(collection = "expense")
+@Document(collection = "expenses")
 data class Provider(
     val name: String,
     @Id val id: String
