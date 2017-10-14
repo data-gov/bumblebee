@@ -25,7 +25,7 @@ jacocoTestReport {
     classDirectories = fileTree(
       dir: "${buildDir}/classes/kotlin/main",
       excludes: [
-        "**/Application*",
+        "**/Bumblebee*",
         "**/model/**"
       ]
     )

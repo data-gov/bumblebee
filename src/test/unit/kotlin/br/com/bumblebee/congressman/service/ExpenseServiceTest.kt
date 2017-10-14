@@ -17,13 +17,13 @@ import org.springframework.test.context.junit4.SpringRunner
 @RunWith(SpringRunner::class)
 internal class ExpenseServiceTest {
 
-    @MockBean
-    private lateinit var client: ExpenseClient
-
-    @MockBean
-    private lateinit var repository: ExpenseRepository
+    companion object {
+        const val ID = 666
+    }
 
     private lateinit var service: ExpenseService
+    @MockBean private lateinit var client: ExpenseClient
+    @MockBean private lateinit var repository: ExpenseRepository
 
     @Before
     fun setUp() {
@@ -32,7 +32,6 @@ internal class ExpenseServiceTest {
 
     @Test
     fun shouldTransformExpenseClientResponseIntoExpense() {
-        val ID = 666
         val mappedResponses: List<Expense> = toExpenses(EXPENSE_CLIENT_MODEL_RESPONSE_FIXTURE)
         whenever(client.getCongressmanExpenses(ID)).thenReturn(EXPENSE_CLIENT_MODEL_RESPONSE_FIXTURE)
         whenever(repository.saveAll(mappedResponses)).thenReturn(mappedResponses)
