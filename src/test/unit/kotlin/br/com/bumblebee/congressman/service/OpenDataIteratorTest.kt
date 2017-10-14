@@ -13,6 +13,7 @@ import com.nhaarman.mockito_kotlin.whenever
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
+import java.net.URL
 
 internal class OpenDataIteratorTest {
 
@@ -34,17 +35,17 @@ internal class OpenDataIteratorTest {
 
     @Test
     fun shouldCallNavigatorToGetNextItem() {
-        val iterator = OpenDataIterator(responseWithNextElement, navigator)
         whenever(navigator.navigate((any()))).thenReturn(eq(responseWithoutNextElement))
+        val iterator = OpenDataIterator(responseWithNextElement, navigator)
         val next = iterator.next()
 
-        verify(navigator).navigate(nextLink.url)
+        verify(navigator).navigate(URL(nextLink.url))
         assertThat(next).isEqualTo(responseWithoutNextElement)
     }
 
     companion object {
         val responseWithoutNextElement = OpenDataResponse(listOf(EXPENSE_CLIENT_MODEL_FIXTURE))
-        val nextLink = Link(LinkType.NEXT, "www.9gag.com")
+        val nextLink = Link(LinkType.NEXT, "https://www.9gag.com")
         val responseWithNextElement = OpenDataResponse(
             listOf(EXPENSE_CLIENT_MODEL_FIXTURE),
             listOf(nextLink)
