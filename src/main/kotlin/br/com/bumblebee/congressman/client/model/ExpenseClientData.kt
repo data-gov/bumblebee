@@ -21,6 +21,6 @@ data class ExpenseClientModel(
     @JsonProperty("valorLiquido") val netValue: Float,
     @JsonProperty("valorGlosa") val glossValue: Float,
     @JsonProperty("numRessarcimento") val refundNumber: Int,
-    @JsonProperty("idLote") val lotId: String,
-    @JsonProperty("parcela") val parcel: String
+    @JsonProperty("idLote") val lotId: Int,
+    @JsonProperty("parcela") val parcel: Int
 )

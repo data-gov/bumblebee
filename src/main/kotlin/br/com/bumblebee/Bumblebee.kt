@@ -6,8 +6,8 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients
 
 @EnableFeignClients
 @SpringBootApplication
-class Application
+class Bumblebee
 
 fun main(args: Array<String>) {
-    SpringApplication.run(Application::class.java, *args)
+    SpringApplication.run(Bumblebee::class.java, *args)
 }

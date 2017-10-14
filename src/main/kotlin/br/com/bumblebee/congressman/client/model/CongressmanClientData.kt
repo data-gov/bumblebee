@@ -13,5 +13,4 @@ data class CongressmanClientModel(
     @JsonProperty("siglaUf") val stateAcronym: String,
     @JsonProperty("idLegislatura") val legislatureId: Int,
     @JsonProperty("urlFoto") val photoUrl: String
-
 )

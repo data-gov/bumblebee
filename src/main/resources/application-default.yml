@@ -4,5 +4,4 @@ camara:
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 0
+      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_URL}
