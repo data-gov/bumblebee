@@ -35,7 +35,7 @@ apply plugin: "io.gitlab.arturbosch.detekt"
 apply plugin: "io.spring.dependency-management"
 
 sourceCompatibility = 1.8
-mainClassName = "br.com.bumblebee.Bumblebee"
+mainClassName = "br.com.bumblebee.BumblebeeKt"
 
 repositories {
   mavenCentral()
