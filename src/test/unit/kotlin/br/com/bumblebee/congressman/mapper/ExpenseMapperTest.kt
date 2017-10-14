@@ -11,7 +11,7 @@ internal class ExpenseMapperTest {
     @Test
     fun shouldTransformExpenseClientResponseIntoExpense() {
         val expected = listOf(EXPENSE_FIXTURE)
-        val actual = toExpenseResponse(ExpenseClientResponse(listOf(EXPENSE_CLIENT_MODEL_FIXTURE)))
+        val actual = toExpenses(ExpenseClientResponse(listOf(EXPENSE_CLIENT_MODEL_FIXTURE)))
         assertThat(actual).isEqualTo(expected)
     }
 }

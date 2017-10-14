@@ -6,7 +6,7 @@ import br.com.bumblebee.congressman.repository.model.Expense
 import br.com.bumblebee.congressman.repository.model.Provider
 import br.com.bumblebee.congressman.repository.model.Receipt
 
-fun toExpenseResponse(response: ExpenseClientResponse) = response.expenses.map { toExpense(it) }
+fun toExpenses(response: ExpenseClientResponse) = response.expenses.map { toExpense(it) }
 
 private fun toExpense(model: ExpenseClientModel): Expense =
     Expense(

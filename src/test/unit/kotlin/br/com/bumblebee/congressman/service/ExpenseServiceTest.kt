@@ -1,0 +1,47 @@
+package br.com.bumblebee.congressman.mapper
+
+import br.com.bumblebee.congressman.client.ExpenseClient
+import br.com.bumblebee.congressman.client.model.EXPENSE_CLIENT_MODEL_RESPONSE_FIXTURE
+import br.com.bumblebee.congressman.repository.ExpenseRepository
+import br.com.bumblebee.congressman.repository.model.Expense
+import br.com.bumblebee.congressman.service.ExpenseService
+import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.whenever
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.test.context.junit4.SpringRunner
+
+@RunWith(SpringRunner::class)
+internal class ExpenseServiceTest {
+
+    @MockBean
+    private lateinit var client: ExpenseClient
+
+    @MockBean
+    private lateinit var repository: ExpenseRepository
+
+    private lateinit var service: ExpenseService
+
+    @Before
+    fun setUp() {
+        service = ExpenseService(client, repository)
+    }
+
+    @Test
+    fun shouldTransformExpenseClientResponseIntoExpense() {
+        val ID = 666
+        val mappedResponses: List<Expense> = toExpenses(EXPENSE_CLIENT_MODEL_RESPONSE_FIXTURE)
+        whenever(client.getCongressmanExpenses(ID)).thenReturn(EXPENSE_CLIENT_MODEL_RESPONSE_FIXTURE)
+        whenever(repository.saveAll(mappedResponses)).thenReturn(mappedResponses)
+
+        val saveCongressmanExpenses = service.saveCongressmanExpenses(ID)
+
+        verify(client).getCongressmanExpenses(ID)
+        verify(repository).saveAll(mappedResponses)
+        assertThat(mappedResponses).isEqualTo(saveCongressmanExpenses)
+    }
+
+}
