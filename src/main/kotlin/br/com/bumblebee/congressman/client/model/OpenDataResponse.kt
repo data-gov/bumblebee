@@ -1,0 +1,20 @@
+package br.com.bumblebee.congressman.client.model
+
+import com.fasterxml.jackson.annotation.JsonProperty
+
+data class OpenDataResponse<T>(
+    @JsonProperty("dados") val data: List<T>,
+    @JsonProperty("links") val links: List<Link> = emptyList()
+    )
+
+data class Link(
+    @JsonProperty("rel") val data: LinkType,
+    @JsonProperty("href") val url: String
+    )
+
+enum class LinkType {
+    @JsonProperty("self") SELF,
+    @JsonProperty("next") NEXT,
+    @JsonProperty("first") FIRST,
+    @JsonProperty("last") LAST
+}

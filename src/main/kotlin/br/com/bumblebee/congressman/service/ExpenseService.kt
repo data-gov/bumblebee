@@ -11,7 +11,7 @@ class ExpenseService(private val client: ExpenseClient, private val repository: 
 
     fun saveCongressmanExpenses (congressmanId: Int): MutableList<Expense>? {
         val expensesResponses = client.getCongressmanExpenses(congressmanId)
-        val expenses = toExpenses(expensesResponses)
+        val expenses = toExpenses(expensesResponses.data)
         return repository.saveAll(expenses)
     }
 }

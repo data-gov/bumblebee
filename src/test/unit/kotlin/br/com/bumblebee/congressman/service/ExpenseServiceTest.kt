@@ -1,7 +1,8 @@
 package br.com.bumblebee.congressman.mapper
 
 import br.com.bumblebee.congressman.client.ExpenseClient
-import br.com.bumblebee.congressman.client.model.EXPENSE_CLIENT_MODEL_RESPONSE_FIXTURE
+import br.com.bumblebee.congressman.client.model.EXPENSE_CLIENT_MODEL_FIXTURE
+import br.com.bumblebee.congressman.client.model.OpenDataResponse
 import br.com.bumblebee.congressman.repository.ExpenseRepository
 import br.com.bumblebee.congressman.repository.model.Expense
 import br.com.bumblebee.congressman.service.ExpenseService
@@ -32,8 +33,8 @@ internal class ExpenseServiceTest {
 
     @Test
     fun shouldTransformExpenseClientResponseIntoExpense() {
-        val mappedResponses: List<Expense> = toExpenses(EXPENSE_CLIENT_MODEL_RESPONSE_FIXTURE)
-        whenever(client.getCongressmanExpenses(ID)).thenReturn(EXPENSE_CLIENT_MODEL_RESPONSE_FIXTURE)
+        val mappedResponses: List<Expense> = toExpenses(listOf(EXPENSE_CLIENT_MODEL_FIXTURE))
+        whenever(client.getCongressmanExpenses(ID)).thenReturn(OpenDataResponse(listOf(EXPENSE_CLIENT_MODEL_FIXTURE)))
         whenever(repository.saveAll(mappedResponses)).thenReturn(mappedResponses)
 
         val saveCongressmanExpenses = service.saveCongressmanExpenses(ID)
