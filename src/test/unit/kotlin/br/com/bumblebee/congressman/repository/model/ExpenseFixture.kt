@@ -8,7 +8,7 @@ const val PROVIDER_ID = "CPF/CNPJ"
 const val URL = "www.xxx.yyy"
 const val RECEIPT_KIND = "123"
 const val RECEIPT_VALUE = 14.5f
-const val RECEIPT_NUMBER = 23
+const val RECEIPT_NUMBER = "Bilhete: D8C1KW"
 const val RECEIPT_KIND_ID = 2
 const val RECEIPT_ID = 0
 

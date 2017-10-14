@@ -1,9 +1,9 @@
 package br.com.bumblebee.congressman.service
 
-import br.com.bumblebee.congressman.client.model.EXPENSE_CLIENT_MODEL_FIXTURE
 import br.com.bumblebee.congressman.client.model.ExpenseClientModel
-import br.com.bumblebee.congressman.client.model.Link
-import br.com.bumblebee.congressman.client.model.LinkType
+import br.com.bumblebee.congressman.client.model.NEXT_LINK_FIXTURE
+import br.com.bumblebee.congressman.client.model.OPEN_DATA_EXPENSE_FIXTURE
+import br.com.bumblebee.congressman.client.model.OPEN_DATA_EXPENSE_WITH_NEXT_FIXTURE
 import br.com.bumblebee.congressman.client.model.OpenDataResponse
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.eq
@@ -18,6 +18,7 @@ import java.net.URI
 internal class OpenDataIteratorTest {
 
     private lateinit var navigator: OpenDataLinkNavigator<ExpenseClientModel>
+    private val emptyReponse = OpenDataResponse<ExpenseClientModel>(emptyList())
 
     @Before
     fun setUp() {
@@ -26,29 +27,22 @@ internal class OpenDataIteratorTest {
 
     @Test
     fun shouldImplementHasNext() {
-        val iteratorWithoutNext = OpenDataIterator(responseWithoutNextElement, navigator)
-        assertThat(iteratorWithoutNext.hasNext()).isFalse()
-
-        val iteratorWithNext = OpenDataIterator(responseWithNextElement, navigator)
+        val iteratorWithNext = OpenDataIterator(OPEN_DATA_EXPENSE_FIXTURE, navigator)
         assertThat(iteratorWithNext.hasNext()).isTrue()
+
+        val iteratorWithoutNext = OpenDataIterator(emptyReponse, navigator)
+        assertThat(iteratorWithoutNext.hasNext()).isFalse()
     }
 
     @Test
     fun shouldCallNavigatorToGetNextItem() {
-        whenever(navigator.navigate((any()))).thenReturn(eq(responseWithoutNextElement))
-        val iterator = OpenDataIterator(responseWithNextElement, navigator)
-        val next = iterator.next()
+        whenever(navigator.navigate(any())).thenReturn(eq(OPEN_DATA_EXPENSE_FIXTURE))
+        val iterator = OpenDataIterator(OPEN_DATA_EXPENSE_WITH_NEXT_FIXTURE, navigator)
 
-        verify(navigator).navigate(URI(nextLink.url))
-        assertThat(next).isEqualTo(responseWithoutNextElement)
+        assertThat(iterator.next()).isEqualTo(OPEN_DATA_EXPENSE_WITH_NEXT_FIXTURE)
+        assertThat(iterator.next()).isEqualTo(OPEN_DATA_EXPENSE_FIXTURE)
+        assertThat(iterator.next()).isEqualTo(emptyReponse)
+        verify(navigator).navigate(URI(NEXT_LINK_FIXTURE.url))
     }
 
-    companion object {
-        val responseWithoutNextElement = OpenDataResponse(listOf(EXPENSE_CLIENT_MODEL_FIXTURE))
-        val nextLink = Link(LinkType.NEXT, "https://www.9gag.com")
-        val responseWithNextElement = OpenDataResponse(
-            listOf(EXPENSE_CLIENT_MODEL_FIXTURE),
-            listOf(nextLink)
-        )
-    }
 }

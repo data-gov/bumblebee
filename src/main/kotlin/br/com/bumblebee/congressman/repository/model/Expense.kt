@@ -21,9 +21,9 @@ data class Expense(
 @Document(collection = "expenses")
 data class Receipt(
     @Id val id: Int,
-    val date: Date,
+    val date: Date?,
     val kindId: Int,
-    val number: Int,
+    val number: String,
     val url: String,
     val value: Float,
     val kind: String
