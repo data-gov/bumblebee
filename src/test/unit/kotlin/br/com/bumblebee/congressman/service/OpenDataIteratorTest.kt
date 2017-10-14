@@ -13,7 +13,7 @@ import com.nhaarman.mockito_kotlin.whenever
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
-import java.net.URL
+import java.net.URI
 
 internal class OpenDataIteratorTest {
 
@@ -39,7 +39,7 @@ internal class OpenDataIteratorTest {
         val iterator = OpenDataIterator(responseWithNextElement, navigator)
         val next = iterator.next()
 
-        verify(navigator).navigate(URL(nextLink.url))
+        verify(navigator).navigate(URI(nextLink.url))
         assertThat(next).isEqualTo(responseWithoutNextElement)
     }
 
