@@ -1,7 +1,8 @@
 package br.com.bumblebee.congressman.client
 
 import br.com.bumblebee.configuration.feign.FeignConfiguration
-import br.com.bumblebee.congressman.client.model.ExpenseClientResponse
+import br.com.bumblebee.congressman.client.model.ExpenseClientModel
+import br.com.bumblebee.congressman.client.model.OpenDataResponse
 import org.springframework.cloud.netflix.feign.FeignClient
 import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,6 +18,6 @@ interface ExpenseClient {
     fun getCongressmanExpenses(
         @PathVariable(name = "id") id: Int,
         @RequestParam(name = "pagina") page: Int = 1
-    ): ExpenseClientResponse
+    ): OpenDataResponse<ExpenseClientModel>
 
 }

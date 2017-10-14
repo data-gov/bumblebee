@@ -3,8 +3,6 @@ package br.com.bumblebee.congressman.client.model
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.util.Date
 
-data class ExpenseClientResponse(@JsonProperty("dados") val expenses: List<ExpenseClientModel>)
-
 data class ExpenseClientModel(
     @JsonProperty("ano") val year: Int,
     @JsonProperty("mes") val month: Int,

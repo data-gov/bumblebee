@@ -64,6 +64,6 @@ internal class ExpenseClientTest {
             .withQueryParam("pagina", equalTo("1"))
         )
 
-        assertEquals(EXPECTED_EXPENSES_SIZE, congressmanExpenses.expenses.size)
+        assertEquals(EXPECTED_EXPENSES_SIZE, congressmanExpenses.data.size)
     }
 }
