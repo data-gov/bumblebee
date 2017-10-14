@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class OpenDataResponse<T>(
     @JsonProperty("dados") val data: List<T>,
-    @JsonProperty("links") val links: List<Link> = emptyList() // TODO: This should be a Map
+    @JsonProperty("links") val links: List<Link> = emptyList()
     )
 
 data class Link(

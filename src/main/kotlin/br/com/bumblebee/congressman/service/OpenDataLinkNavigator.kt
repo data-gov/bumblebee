@@ -4,5 +4,5 @@ import br.com.bumblebee.congressman.client.model.OpenDataResponse
 import java.net.URI
 
 interface OpenDataLinkNavigator<T> {
-    fun navigate(url: URI): OpenDataResponse<T>
+    fun navigate(uri: URI): OpenDataResponse<T>
 }

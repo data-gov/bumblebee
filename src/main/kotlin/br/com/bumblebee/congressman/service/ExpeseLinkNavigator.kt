@@ -7,16 +7,17 @@ import org.springframework.stereotype.Component
 import org.springframework.web.util.UriComponentsBuilder
 import java.net.URI
 
-
 @Component
-class ExpeseLinkNavigator(private val client: ExpenseClient): OpenDataLinkNavigator<ExpenseClientModel> {
-    private val ID_INDEX = 3
-    private val FALLBACK = "0"
+class ExpeseLinkNavigator(private val client: ExpenseClient) : OpenDataLinkNavigator<ExpenseClientModel> {
+    companion object {
+        private const val ID_INDEX = 3
+        private const val FALLBACK = "0"
+    }
 
     override fun navigate(uri: URI): OpenDataResponse<ExpenseClientModel> {
         val uriBuilder = UriComponentsBuilder.fromUri(uri).build()
         val nextPage: String = uriBuilder.queryParams.getOrDefault("pagina", listOf(FALLBACK)).first()
-        val congressmanId: String = uriBuilder.pathSegments.getOrElse(ID_INDEX){ FALLBACK }
+        val congressmanId: String = uriBuilder.pathSegments.getOrElse(ID_INDEX) { FALLBACK }
         return client.getCongressmanExpenses(congressmanId.toInt(), nextPage.toInt())
     }
 }
