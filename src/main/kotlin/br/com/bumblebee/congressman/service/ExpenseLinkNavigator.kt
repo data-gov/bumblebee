@@ -8,7 +8,7 @@ import org.springframework.web.util.UriComponentsBuilder
 import java.net.URI
 
 @Component
-class ExpeseLinkNavigator(private val client: ExpenseClient) : OpenDataLinkNavigator<ExpenseClientModel> {
+class ExpenseLinkNavigator(private val client: ExpenseClient) : OpenDataLinkNavigator<ExpenseClientModel> {
     companion object {
         private const val ID_INDEX = 3
         private const val FALLBACK = "0"

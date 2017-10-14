@@ -13,19 +13,19 @@ import org.springframework.test.context.junit4.SpringRunner
 import java.net.URI
 
 @RunWith(SpringRunner::class)
-internal class ExpeseLinkNavigatorTest {
+internal class ExpenseLinkNavigatorTest {
     companion object {
         const val ID = 666
         const val NEXT_PAGE = 2
     }
 
-    private lateinit var navigator: ExpeseLinkNavigator
+    private lateinit var navigator: ExpenseLinkNavigator
     @MockBean private lateinit var client: ExpenseClient
 
     @Before
     fun setUp() {
         whenever(client.getCongressmanExpenses(ID, NEXT_PAGE)).thenReturn(OPEN_DATA_EXPENSE_FIXTURE)
-        navigator = ExpeseLinkNavigator(client)
+        navigator = ExpenseLinkNavigator(client)
     }
 
     @Test
