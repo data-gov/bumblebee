@@ -57,7 +57,7 @@ internal class ExpenseServiceTest {
         whenever(client.getCongressmanExpenses(ID, LAST_PAGE, ExpenseClient.ITEM))
             .thenReturn(OPEN_DATA_EXPENSE_FIXTURE)
 
-        service.saveAllCongresmanExpenses(ID)
+        service.saveAllCongressmanExpenses(ID)
 
         verify(client, times(2)).getCongressmanExpenses(eq(ID), any(), eq(ExpenseClient.ITEM))
         verify(repository, times(2)).saveAll(any<List<Expense>>())
