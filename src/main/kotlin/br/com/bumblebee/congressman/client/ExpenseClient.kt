@@ -14,10 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam
 @RequestMapping(produces = arrayOf(APPLICATION_JSON_UTF8_VALUE))
 interface ExpenseClient {
 
+    companion object {
+        const val ITEM = 300
+    }
+
     @GetMapping("/deputados/{id}/despesas")
     fun getCongressmanExpenses(
         @PathVariable(name = "id") id: Int,
-        @RequestParam(name = "pagina") page: Int = 1
+        @RequestParam(name = "pagina") page: Int = 1,
+        @RequestParam(name = "itens") items: Int = ITEM
     ): OpenDataResponse<ExpenseClientModel>
 
 }
