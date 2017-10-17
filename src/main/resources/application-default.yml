@@ -1,6 +1,12 @@
 camara:
   api: https://dadosabertos.camara.leg.br/api/v2/
 
+logging:
+  level:
+    br.com.bumblebee.congressman.client: DEBUG
+  feign:
+    type: BASIC
+
 spring:
   data:
     mongodb:

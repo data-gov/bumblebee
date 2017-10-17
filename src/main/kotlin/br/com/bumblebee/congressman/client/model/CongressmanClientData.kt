@@ -2,8 +2,6 @@ package br.com.bumblebee.congressman.client.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class CongressmanClientResponse(@JsonProperty("dados") val congressman: List<CongressmanClientModel>)
-
 data class CongressmanClientModel(
     val id: Int,
     val uri: String,
