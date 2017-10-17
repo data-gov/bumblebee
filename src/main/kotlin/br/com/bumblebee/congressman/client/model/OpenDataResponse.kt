@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class OpenDataResponse<T>(
     @JsonProperty("dados") val data: List<T>,
     @JsonProperty("links") val links: List<Link> = emptyList()
-    )
+)
 
 data class Link(
     @JsonProperty("rel") val type: LinkType,
     @JsonProperty("href") val url: String
-    )
+)
 
 enum class LinkType {
     @JsonProperty("self") SELF,

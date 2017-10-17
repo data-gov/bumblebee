@@ -48,9 +48,9 @@ internal class ExpenseClientTest {
 
         givenThat(
             get(urlMatching(EXPENSE_ENDPOINT))
-            .withQueryParam("pagina", equalTo("1"))
-            .withHeader("Accept", equalTo(APPLICATION_JSON_UTF8_VALUE))
-            .willReturn(okJson(expensesJson))
+                .withQueryParam("pagina", equalTo("1"))
+                .withHeader("Accept", equalTo(APPLICATION_JSON_UTF8_VALUE))
+                .willReturn(okJson(expensesJson))
         )
     }
 
@@ -60,8 +60,8 @@ internal class ExpenseClientTest {
 
         verify(
             getRequestedFor(urlMatching(EXPENSE_ENDPOINT))
-            .withHeader("Accept", equalTo(APPLICATION_JSON_UTF8_VALUE))
-            .withQueryParam("pagina", equalTo("1"))
+                .withHeader("Accept", equalTo(APPLICATION_JSON_UTF8_VALUE))
+                .withQueryParam("pagina", equalTo("1"))
         )
 
         assertEquals(EXPECTED_EXPENSES_SIZE, congressmanExpenses.data.size)
