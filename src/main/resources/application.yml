@@ -5,3 +5,11 @@ spring:
 feign:
   okhttp:
     enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: application/json
+    response:
+      enabled: true
+  connectTimeout: 5000
+  readTimeout: 5000
