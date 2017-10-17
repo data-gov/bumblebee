@@ -7,6 +7,7 @@ import java.net.URI
 
 class OpenDataIterator<T>(iterable: OpenDataResponse<T>, private val navigator: OpenDataLinkNavigator<T>)
     : Iterator<OpenDataResponse<T>> {
+
     private var nextResponse: OpenDataResponse<T> = iterable
 
     override fun hasNext() = !nextResponse.data.isEmpty()

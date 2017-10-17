@@ -16,7 +16,7 @@ data class Expense(
     val refundNumber: Int,
     val glossValue: Float,
     val provider: Provider
-    )
+)
 
 @Document(collection = "expenses")
 data class Receipt(
@@ -27,10 +27,12 @@ data class Receipt(
     val url: String,
     val value: Float,
     val kind: String
-    )
+)
 
 @Document(collection = "expenses")
 data class Provider(
+    @Id val id: String,
     val name: String,
-    @Id val id: String
-    )
+    val providerId: String?
+
+)

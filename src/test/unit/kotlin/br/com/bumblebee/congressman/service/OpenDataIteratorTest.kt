@@ -1,7 +1,7 @@
 package br.com.bumblebee.congressman.service
 
+import br.com.bumblebee.congressman.client.model.EXPENSE_NEXT_LINK_FIXTURE
 import br.com.bumblebee.congressman.client.model.ExpenseClientModel
-import br.com.bumblebee.congressman.client.model.NEXT_LINK_FIXTURE
 import br.com.bumblebee.congressman.client.model.OPEN_DATA_EXPENSE_FIXTURE
 import br.com.bumblebee.congressman.client.model.OPEN_DATA_EXPENSE_WITH_NEXT_FIXTURE
 import br.com.bumblebee.congressman.client.model.OpenDataResponse
@@ -18,7 +18,7 @@ import java.net.URI
 internal class OpenDataIteratorTest {
 
     private lateinit var navigator: OpenDataLinkNavigator<ExpenseClientModel>
-    private val emptyReponse = OpenDataResponse<ExpenseClientModel>(emptyList())
+    private val emptyResponse = OpenDataResponse<ExpenseClientModel>(emptyList())
 
     @Before
     fun setUp() {
@@ -30,7 +30,7 @@ internal class OpenDataIteratorTest {
         val iteratorWithNext = OpenDataIterator(OPEN_DATA_EXPENSE_FIXTURE, navigator)
         assertThat(iteratorWithNext.hasNext()).isTrue()
 
-        val iteratorWithoutNext = OpenDataIterator(emptyReponse, navigator)
+        val iteratorWithoutNext = OpenDataIterator(emptyResponse, navigator)
         assertThat(iteratorWithoutNext.hasNext()).isFalse()
     }
 
@@ -41,8 +41,8 @@ internal class OpenDataIteratorTest {
 
         assertThat(iterator.next()).isEqualTo(OPEN_DATA_EXPENSE_WITH_NEXT_FIXTURE)
         assertThat(iterator.next()).isEqualTo(OPEN_DATA_EXPENSE_FIXTURE)
-        assertThat(iterator.next()).isEqualTo(emptyReponse)
-        verify(navigator).navigate(URI(NEXT_LINK_FIXTURE.url))
+        assertThat(iterator.next()).isEqualTo(emptyResponse)
+        verify(navigator).navigate(URI(EXPENSE_NEXT_LINK_FIXTURE.url))
     }
 
 }
