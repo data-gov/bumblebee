@@ -36,6 +36,7 @@ private fun createReceipt(model: ExpenseClientModel): Receipt =
 
 private fun createProvider(model: ExpenseClientModel): Provider =
     Provider(
+        model.documentId.toString().plus(model.providerId),
         model.provider,
         model.providerId
     )

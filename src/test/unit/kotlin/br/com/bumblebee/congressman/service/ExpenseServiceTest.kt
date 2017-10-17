@@ -1,7 +1,6 @@
 package br.com.bumblebee.congressman.mapper
 
 import br.com.bumblebee.congressman.client.ExpenseClient
-import br.com.bumblebee.congressman.client.model.EXPENSE_CLIENT_MODEL_FIXTURE
 import br.com.bumblebee.congressman.client.model.OPEN_DATA_EXPENSE_FIXTURE
 import br.com.bumblebee.congressman.client.model.OPEN_DATA_EXPENSE_WITH_NEXT_FIXTURE
 import br.com.bumblebee.congressman.repository.ExpenseRepository
@@ -12,7 +11,6 @@ import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -35,19 +33,6 @@ internal class ExpenseServiceTest {
     @Before
     fun setUp() {
         service = ExpenseService(client, repository)
-    }
-
-    @Test
-    fun shouldTransformExpenseClientResponseIntoExpense() {
-        val mappedResponses: List<Expense> = toExpenses(listOf(EXPENSE_CLIENT_MODEL_FIXTURE))
-        whenever(client.getCongressmanExpenses(ID)).thenReturn(OPEN_DATA_EXPENSE_FIXTURE)
-        whenever(repository.saveAll(mappedResponses)).thenReturn(mappedResponses)
-
-        val saveCongressmanExpenses = service.saveCongressmanExpenses(ID)
-
-        verify(client).getCongressmanExpenses(ID)
-        verify(repository).saveAll(mappedResponses)
-        assertThat(mappedResponses).isEqualTo(saveCongressmanExpenses)
     }
 
     @Test

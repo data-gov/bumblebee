@@ -37,11 +37,12 @@ class FeignConfiguration {
     fun errorDecoder() = FeignErrorDecoder()
 
     @Bean
-    fun okHttpClient() =
-        feign.okhttp.OkHttpClient(OkHttpClient.Builder()
+    fun okHttpClient(): feign.okhttp.OkHttpClient {
+        return feign.okhttp.OkHttpClient(OkHttpClient.Builder()
             .connectionPool(ConnectionPool(MAX_CONNECTIONS, DURATION, TimeUnit.MINUTES))
             .readTimeout(readTimeout.toLong(), TimeUnit.MILLISECONDS)
             .connectTimeout(connectTimeout.toLong(), TimeUnit.MILLISECONDS)
             .retryOnConnectionFailure(true)
             .build())
+    }
 }

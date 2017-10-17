@@ -15,7 +15,7 @@ data class ExpenseClientModel(
     @JsonProperty("valorDocumento") val documentValue: Float,
     @JsonProperty("urlDocumento") val documentUrl: String,
     @JsonProperty("nomeFornecedor") val provider: String,
-    @JsonProperty("cnpjCpfFornecedor") val providerId: String,
+    @JsonProperty("cnpjCpfFornecedor") val providerId: String?,
     @JsonProperty("valorLiquido") val netValue: Float,
     @JsonProperty("valorGlosa") val glossValue: Float,
     @JsonProperty("numRessarcimento") val refundNumber: Int,

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam
 interface ExpenseClient {
 
     companion object {
-        const val ITEM = 300
+        const val ITEM = 100
     }
 
     @GetMapping("/deputados/{id}/despesas")
