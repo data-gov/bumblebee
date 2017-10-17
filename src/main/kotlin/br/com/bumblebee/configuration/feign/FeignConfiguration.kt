@@ -8,7 +8,8 @@ import okhttp3.OkHttpClient
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeUnit.MILLISECONDS
+import java.util.concurrent.TimeUnit.MINUTES
 
 @Configuration
 class FeignConfiguration {
@@ -37,12 +38,14 @@ class FeignConfiguration {
     fun errorDecoder() = FeignErrorDecoder()
 
     @Bean
-    fun okHttpClient(): feign.okhttp.OkHttpClient {
-        return feign.okhttp.OkHttpClient(OkHttpClient.Builder()
-            .connectionPool(ConnectionPool(MAX_CONNECTIONS, DURATION, TimeUnit.MINUTES))
-            .readTimeout(readTimeout.toLong(), TimeUnit.MILLISECONDS)
-            .connectTimeout(connectTimeout.toLong(), TimeUnit.MILLISECONDS)
+    fun okHttpClient() =
+        feign.okhttp.OkHttpClient(configOkHttp())
+
+    private fun configOkHttp() =
+        OkHttpClient.Builder()
+            .connectionPool(ConnectionPool(MAX_CONNECTIONS, DURATION, MINUTES))
+            .readTimeout(readTimeout.toLong(), MILLISECONDS)
+            .connectTimeout(connectTimeout.toLong(), MILLISECONDS)
             .retryOnConnectionFailure(true)
-            .build())
-    }
+            .build()
 }
