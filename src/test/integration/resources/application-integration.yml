@@ -1,6 +1,9 @@
 camara:
   api: http://localhost:9000
 
+cepesp:
+  api: http://localhost:9000
+
 logging:
   level:
     br.com.bumblebee.congressman.client: DEBUG

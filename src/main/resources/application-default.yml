@@ -1,6 +1,9 @@
 camara:
   api: https://dadosabertos.camara.leg.br/api/v2/
 
+cepesp:
+  api: http://cepesp.io/api/consulta
+
 logging:
   level:
     br.com.bumblebee.congressman.client: DEBUG

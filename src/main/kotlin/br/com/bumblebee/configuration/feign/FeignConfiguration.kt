@@ -1,6 +1,6 @@
 package br.com.bumblebee.configuration.feign
 
-import br.com.bumblebee.congressman.client.decoder.FeignErrorDecoder
+import br.com.bumblebee.configuration.feign.decoder.FeignErrorDecoder
 import feign.Logger
 import feign.Request
 import okhttp3.ConnectionPool
