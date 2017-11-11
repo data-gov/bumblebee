@@ -6,9 +6,9 @@ cepesp:
 
 logging:
   level:
-    br.com.bumblebee.congressman.client: DEBUG
+    br.com.bumblebee.api: DEBUG
   feign:
-    type: BASIC
+    type: FULL
 
 spring:
   data:

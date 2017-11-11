@@ -1,7 +1,7 @@
 buildscript {
   ext {
     kotlinVersion = "1.1.51"
-    springBootVersion = "2.0.0.BUILD-SNAPSHOT"
+    springBootVersion = "2.0.0.M2"
   }
 
   repositories {
@@ -17,7 +17,7 @@ buildscript {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
     classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-    classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC4-3"
+    classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC5-3"
   }
 }
 
@@ -46,7 +46,7 @@ repositories {
 dependencyManagement {
   imports {
     mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
-    mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.BUILD-SNAPSHOT"
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.M2"
   }
 }
 
@@ -56,9 +56,11 @@ dependencies {
 
   compile "org.slf4j:slf4j-api:1.7.25"
   compile "com.squareup.okhttp3:okhttp:3.9.0"
-  compile "com.netflix.feign:feign-okhttp:8.18.0"
+  compile "io.github.openfeign:feign-okhttp:9.5.1"
+
   compile "io.github.microutils:kotlin-logging:1.4.6"
-  compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
+  compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.2"
+  compile "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.9.2"
 
   compile "org.springframework.data:spring-data-mongodb"
   compile "org.springframework.boot:spring-boot-starter-web"
@@ -67,9 +69,9 @@ dependencies {
   compile "org.springframework.cloud:spring-cloud-starter-hystrix:$springBootVersion"
 
   testCompile "junit:junit:4.12"
-  testCompile "org.mockito:mockito-core:2.10.0"
-  testCompile "org.mockito:mockito-inline:2.10.0"
-  testCompile "com.github.tomakehurst:wiremock:2.8.0"
+  testCompile "org.mockito:mockito-core:2.11.0"
+  testCompile "org.mockito:mockito-inline:2.11.0"
+  testCompile "com.github.tomakehurst:wiremock:2.10.1"
   testCompile "org.jetbrains.kotlin:kotlin-test-junit"
   testCompile "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
   testCompile "com.jayway.restassured:rest-assured:2.9.0"
@@ -79,7 +81,7 @@ dependencies {
 
 task wrapper(type: Wrapper) {
   description = "Generates gradlew[.bat] scripts"
-  gradleVersion = "4.2.1"
+  gradleVersion = "4.3"
 }
 
 apply from: "${rootProject.rootDir}/gradle/git.gradle"
@@ -92,5 +94,5 @@ apply from: "${rootProject.rootDir}/gradle/build-scan.gradle"
 apply from: "${rootProject.rootDir}/gradle/integration-test.gradle"
 apply from: "${rootProject.rootDir}/gradle/coverage.gradle"
 
-defaultTasks "clean", "compileKotlin", "detektFormat", "findbugsMain", "test", "integrationTest", "jacocoTestReport",
+defaultTasks "clean", "compileKotlin", "detektCheck", "findbugsMain", "test", "integrationTest", "jacocoTestReport",
   "bootJar"

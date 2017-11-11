@@ -11,7 +11,7 @@ class ElectionService(private val client: ElectionClient) {
         private const val ROLE_CODE = 1
     }
 
-    fun saveAllElectionInfo() {
+    fun getAllElectionInfo() {
         client.electionInfo(YEAR, ROLE_CODE)
     }
 }
