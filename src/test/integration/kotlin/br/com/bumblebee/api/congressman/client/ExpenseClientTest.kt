@@ -10,6 +10,7 @@ import com.github.tomakehurst.wiremock.client.WireMock.urlMatching
 import com.github.tomakehurst.wiremock.client.WireMock.verify
 import com.github.tomakehurst.wiremock.junit.WireMockRule
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -55,6 +56,7 @@ internal class ExpenseClientTest {
     }
 
     @Test
+    @Ignore
     fun shouldGetListOfExpenses() {
         val congressmanExpenses = client.getCongressmanExpenses(CONGRESSMAN_ID)
 
