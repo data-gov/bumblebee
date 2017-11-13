@@ -8,7 +8,7 @@ feign:
   compression:
     request:
       enabled: true
-      mime-types: application/json
+      mime-types: application/json, text/csv
     response:
       enabled: true
   connectTimeout: 5000
