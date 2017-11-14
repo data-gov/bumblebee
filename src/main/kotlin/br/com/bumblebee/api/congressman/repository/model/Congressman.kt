@@ -15,7 +15,7 @@ data class Congressman(
     val schooling: String?,
     val socialMedia: List<String>,
     val websiteUrl: String?,
-    val birthState: String? ,
+    val birthState: String?,
     val birthCity: String,
     val status: List<CongressmanStatus>,
     val office: Office,

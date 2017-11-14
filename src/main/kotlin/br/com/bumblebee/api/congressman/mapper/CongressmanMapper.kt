@@ -17,7 +17,7 @@ fun toCongressman(congressman: CongressmanDetailsClientModel, expenses: List<Exp
         congressman.deathDate,
         congressman.schooling,
         congressman.socialMedia,
-        congressman.websiteUrl ,
+        congressman.websiteUrl,
         congressman.birthState,
         congressman.birthCity,
         createStatus(congressman.lastStatus),
@@ -41,7 +41,7 @@ private fun createStatus(status: CongressmanDetailsClientStatus) =
 
 private fun creteOffice(office: CongressmanDetailsClientOffice) =
     Office(
-        office.floor ,
+        office.floor,
         office.email,
         office.name,
         office.building,

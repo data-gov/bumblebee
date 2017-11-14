@@ -2,6 +2,18 @@ spring:
   application:
     name: bumblebee
 
+camara:
+  api: https://dadosabertos.camara.leg.br/api/v2/
+
+cepesp:
+  api: http://cepesp.io/api/consulta
+
+logging:
+  level:
+    br.com.bumblebee.api: DEBUG
+  feign:
+    type: FULL
+
 feign:
   okhttp:
     enabled: true
