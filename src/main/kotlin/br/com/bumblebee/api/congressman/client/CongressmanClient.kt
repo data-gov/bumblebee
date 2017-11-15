@@ -3,14 +3,14 @@ package br.com.bumblebee.api.congressman.client
 import br.com.bumblebee.api.congressman.client.model.CongressmanClientModel
 import br.com.bumblebee.api.congressman.client.model.CongressmanDetailsClientResponse
 import br.com.bumblebee.api.congressman.client.model.OpenDataResponse
-import br.com.bumblebee.configuration.feign.FeignConfiguration
+import br.com.bumblebee.configuration.feign.congressmen.CongressmenConfiguration
 import org.springframework.cloud.netflix.feign.FeignClient
 import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 
-@FeignClient(name = "congressman", url = "\${camara.api}", configuration = arrayOf(FeignConfiguration::class))
+@FeignClient(name = "congressman", url = "\${camara.api}", configuration = arrayOf(CongressmenConfiguration::class))
 interface CongressmanClient {
 
     private companion object {

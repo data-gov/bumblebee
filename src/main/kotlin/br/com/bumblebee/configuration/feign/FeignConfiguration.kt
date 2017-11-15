@@ -38,11 +38,9 @@ class FeignConfiguration {
     fun errorDecoder() = FeignErrorDecoder()
 
     @Bean
-    fun okHttpClient() =
-        feign.okhttp.OkHttpClient(configOkHttp())
+    fun okHttpClient() = feign.okhttp.OkHttpClient(configOkHttp())
 
-    private fun configOkHttp() =
-        OkHttpClient.Builder()
+    private fun configOkHttp() = OkHttpClient.Builder()
             .connectionPool(ConnectionPool(MAX_CONNECTIONS, DURATION, MINUTES))
             .readTimeout(readTimeout.toLong(), MILLISECONDS)
             .connectTimeout(connectTimeout.toLong(), MILLISECONDS)
