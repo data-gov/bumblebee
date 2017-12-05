@@ -22,7 +22,7 @@ class CongressmanService(private val client: CongressmanClient,
         val congressmanWithDetails = allCongressman()
             .map { congressmanDetails(it.id) }
 
-        logger.info { "Congressman extraction finished. " }
+        logger.info { "Congressman extraction finished." }
 
         return copyOf(congressmanWithDetails)
     }

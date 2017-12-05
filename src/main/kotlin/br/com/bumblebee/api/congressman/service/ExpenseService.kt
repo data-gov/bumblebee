@@ -21,9 +21,7 @@ class ExpenseService(private val client: ExpenseClient, private val repository: 
             .iterator().forEach { repository.saveAll(toExpenses(it)) }
     }
 
-    fun getAllCongressmanExpenses(id: Int): ImmutableList<Expense> {
-        return copyOf(toExpenses(allExpenses(id)))
-    }
+    fun getAllCongressmanExpenses(id: Int): ImmutableList<Expense> = copyOf(toExpenses(allExpenses(id)))
 
     private fun allExpenses(id: Int): ImmutableList<ExpenseClientModel> {
         val allExpenses = mutableListOf<ExpenseClientModel>()

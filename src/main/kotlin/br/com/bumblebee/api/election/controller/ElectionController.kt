@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 class ElectionController(private val service: ElectionService) {
 
     @GetMapping(path = arrayOf("/election"))
-    fun getAll() = service.getAllElectionInfo()
+    fun extract() = service.extractElectionInfo()
 }
 
 

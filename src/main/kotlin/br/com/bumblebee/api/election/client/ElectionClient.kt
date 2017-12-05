@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam
 interface ElectionClient {
 
     @GetMapping(path = arrayOf("/tse"))
-    fun electionInfo(@RequestParam(name = "ano") year: Int,
-                     @RequestParam(name = "cargo") role: Int): List<PresidentElectionData>
+    fun electionInfo(@RequestParam(name = "ano") year: String,
+                     @RequestParam(name = "cargo") role: Int,
+                     @RequestParam(name = "agregacao_regional") regionalAggregation: Int = 2,
+                     @RequestParam(name = "agregacao_politica") politicalAggregation: Int = 2):
+        List<PresidentElectionData>
 }
