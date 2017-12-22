@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@nemesis-prime-shard-00-00-piroh.mongodb.net:27017,nemesis-prime-shard-00-01-piroh.mongodb.net:27017,nemesis-prime-shard-00-02-piroh.mongodb.net:27017/test?ssl=true&replicaSet=nemesis-prime-shard-0&authSource=admin
