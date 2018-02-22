@@ -5,10 +5,9 @@ import br.com.bumblebee.api.congressman.client.model.CongressmanDetailsClientOff
 import br.com.bumblebee.api.congressman.client.model.CongressmanDetailsClientStatus
 import br.com.bumblebee.api.congressman.repository.model.Congressman
 import br.com.bumblebee.api.congressman.repository.model.CongressmanStatus
-import br.com.bumblebee.api.congressman.repository.model.Expense
 import br.com.bumblebee.api.congressman.repository.model.Office
 
-fun toCongressman(congressman: CongressmanDetailsClientModel, expenses: List<Expense>) =
+fun toCongressman(congressman: CongressmanDetailsClientModel) =
     Congressman(
         congressman.id,
         congressman.lastStatus.name,
@@ -21,8 +20,7 @@ fun toCongressman(congressman: CongressmanDetailsClientModel, expenses: List<Exp
         congressman.birthState,
         congressman.birthCity,
         createStatus(congressman.lastStatus),
-        creteOffice(congressman.lastStatus.office),
-        expenses
+        creteOffice(congressman.lastStatus.office)
     )
 
 private fun createStatus(status: CongressmanDetailsClientStatus) =

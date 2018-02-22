@@ -1,9 +1,9 @@
 package br.com.bumblebee.api.congressman.service
 
-import br.com.bumblebee.api.congressman.client.model.EXPENSE_NEXT_LINK_FIXTURE
-import br.com.bumblebee.api.congressman.client.model.ExpenseClientModel
-import br.com.bumblebee.api.congressman.client.model.OPEN_DATA_EXPENSE_FIXTURE
-import br.com.bumblebee.api.congressman.client.model.OPEN_DATA_EXPENSE_WITH_NEXT_FIXTURE
+import br.com.bumblebee.api.congressman.client.model.CONGRESSMAN_NEXT_LINK_FIXTURE
+import br.com.bumblebee.api.congressman.client.model.CongressmanClientModel
+import br.com.bumblebee.api.congressman.client.model.OPEN_DATA_CONGRESSMAN_FIXTURE
+import br.com.bumblebee.api.congressman.client.model.OPEN_DATA_CONGRESSMAN_WITH_NEXT_FIXTURE
 import br.com.bumblebee.api.congressman.client.model.OpenDataResponse
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.eq
@@ -17,8 +17,8 @@ import java.net.URI
 
 internal class OpenDataIteratorTest {
 
-    private lateinit var navigator: OpenDataLinkNavigator<ExpenseClientModel>
-    private val emptyResponse = OpenDataResponse<ExpenseClientModel>(emptyList())
+    private lateinit var navigator: OpenDataLinkNavigator<CongressmanClientModel>
+    private val emptyResponse = OpenDataResponse<CongressmanClientModel>(emptyList())
 
     @Before
     fun setUp() {
@@ -27,7 +27,7 @@ internal class OpenDataIteratorTest {
 
     @Test
     fun shouldImplementHasNext() {
-        val iteratorWithNext = OpenDataIterator(OPEN_DATA_EXPENSE_FIXTURE, navigator)
+        val iteratorWithNext = OpenDataIterator(OPEN_DATA_CONGRESSMAN_FIXTURE, navigator)
         assertThat(iteratorWithNext.hasNext()).isTrue()
 
         val iteratorWithoutNext = OpenDataIterator(emptyResponse, navigator)
@@ -36,13 +36,13 @@ internal class OpenDataIteratorTest {
 
     @Test
     fun shouldCallNavigatorToGetNextItem() {
-        whenever(navigator.navigate(any())).thenReturn(eq(OPEN_DATA_EXPENSE_FIXTURE))
-        val iterator = OpenDataIterator(OPEN_DATA_EXPENSE_WITH_NEXT_FIXTURE, navigator)
+        whenever(navigator.navigate(any())).thenReturn(eq(OPEN_DATA_CONGRESSMAN_FIXTURE))
+        val iterator = OpenDataIterator(OPEN_DATA_CONGRESSMAN_WITH_NEXT_FIXTURE, navigator)
 
-        assertThat(iterator.next()).isEqualTo(OPEN_DATA_EXPENSE_WITH_NEXT_FIXTURE)
-        assertThat(iterator.next()).isEqualTo(OPEN_DATA_EXPENSE_FIXTURE)
+        assertThat(iterator.next()).isEqualTo(OPEN_DATA_CONGRESSMAN_WITH_NEXT_FIXTURE)
+        assertThat(iterator.next()).isEqualTo(OPEN_DATA_CONGRESSMAN_FIXTURE)
         assertThat(iterator.next()).isEqualTo(emptyResponse)
-        verify(navigator).navigate(URI(EXPENSE_NEXT_LINK_FIXTURE.url))
+        verify(navigator).navigate(URI(CONGRESSMAN_NEXT_LINK_FIXTURE.url))
     }
 
 }
