@@ -2,7 +2,7 @@ package br.com.bumblebee.api.congressman.repository.model
 
 import java.time.LocalDate.now
 import java.time.ZoneOffset
-import java.util.Date
+import java.util.*
 
 const val CONGRESSMAN_ID = 1000000
 const val CONGRESSMAN_NAME = "Congressman Decepticon"

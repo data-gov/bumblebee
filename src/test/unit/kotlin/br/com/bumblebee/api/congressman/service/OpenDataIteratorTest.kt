@@ -1,15 +1,7 @@
 package br.com.bumblebee.api.congressman.service
 
-import br.com.bumblebee.api.congressman.client.model.CONGRESSMAN_NEXT_LINK_FIXTURE
-import br.com.bumblebee.api.congressman.client.model.CongressmanClientModel
-import br.com.bumblebee.api.congressman.client.model.OPEN_DATA_CONGRESSMAN_FIXTURE
-import br.com.bumblebee.api.congressman.client.model.OPEN_DATA_CONGRESSMAN_WITH_NEXT_FIXTURE
-import br.com.bumblebee.api.congressman.client.model.OpenDataResponse
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.eq
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import br.com.bumblebee.api.congressman.client.model.*
+import com.nhaarman.mockito_kotlin.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test

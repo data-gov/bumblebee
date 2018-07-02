@@ -23,22 +23,6 @@ class CongressmanService(private val client: CongressmanClient,
 
         logger.info { "Congressman extraction finished." }
 
-        return copyOf(congressmanWithDetails)
-    }
-
-    /**
-     *
-     * Extract all congresmman from API and save in our database
-     * @return the saved list.
-     *
-     * @deprecated will be merged with saveAllCongressman
-     */
-    fun saveAllCongressmanInRepository(): ImmutableList<Congressman> {
-        val congressmanWithDetails = allCongressman()
-            .map { congressmanDetails(it.id) }
-
-        logger.info { "Congressman extraction finished. " }
-
         return copyOf(repository.saveAll(congressmanWithDetails))
     }
 

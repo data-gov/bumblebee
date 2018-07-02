@@ -4,7 +4,7 @@ import br.com.bumblebee.api.congressman.client.model.CongressmanClientModel
 import br.com.bumblebee.api.congressman.client.model.CongressmanDetailsClientResponse
 import br.com.bumblebee.api.congressman.client.model.OpenDataResponse
 import br.com.bumblebee.configuration.feign.FeignConfiguration
-import org.springframework.cloud.netflix.feign.FeignClient
+import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

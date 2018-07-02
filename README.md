@@ -2,13 +2,12 @@
 
 ## Projeto Bumblebee
 
-Bumblebee é o projeto responsável por buscar dados de diversas fontes abertas,
+Bumblebee é o projeto responsável por buscar dados públicos,
 modelar para um formato padronizado e salvar numa base de dados mongo.
 
 ## Fonte de Dados
-Até o momento estamos consultando dados de duas fontes:
+Até o momento estamos consultando dados da seguinte fonte:
 - [x] API Camara dos deputados
-- [x] API Dados TSE (Cepesp-FGV)
 
 ## Tecnologias
 - Kotlin
