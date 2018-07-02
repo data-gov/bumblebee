@@ -2,7 +2,7 @@ detekt {
   profile("main") {
     input = "$projectDir/src/main/kotlin"
     config = "$projectDir/config/linter/detekt.yml"
-    output = "$reportsDir/detekt"
+    output = "$buildDir/reports/detekt"
     disableDefaultRuleSets = false
     outputName = "bumblebee"
     parallel = true

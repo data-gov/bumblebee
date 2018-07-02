@@ -1,4 +1,4 @@
-package br.com.bumblebee.api.congressman.service
+package br.com.bumblebee.api.congressman.service.navigator
 
 import br.com.bumblebee.api.congressman.client.model.OpenDataResponse
 import java.net.URI

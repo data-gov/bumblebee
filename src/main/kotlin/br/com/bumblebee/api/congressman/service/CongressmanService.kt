@@ -6,6 +6,8 @@ import br.com.bumblebee.api.congressman.client.model.OpenDataResponse
 import br.com.bumblebee.api.congressman.mapper.toCongressman
 import br.com.bumblebee.api.congressman.repository.CongressmanRepository
 import br.com.bumblebee.api.congressman.repository.model.Congressman
+import br.com.bumblebee.api.congressman.service.navigator.CongressmanLinkNavigator
+import br.com.bumblebee.api.congressman.service.navigator.OpenDataIterator
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableList.copyOf
 import mu.KotlinLogging

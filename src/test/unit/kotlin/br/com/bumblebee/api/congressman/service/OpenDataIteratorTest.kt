@@ -1,10 +1,12 @@
 package br.com.bumblebee.api.congressman.service
 
 import br.com.bumblebee.api.congressman.client.model.*
+import br.com.bumblebee.api.congressman.service.navigator.OpenDataIterator
+import br.com.bumblebee.api.congressman.service.navigator.OpenDataLinkNavigator
 import com.nhaarman.mockito_kotlin.*
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import java.net.URI
 
 internal class OpenDataIteratorTest {
@@ -12,7 +14,7 @@ internal class OpenDataIteratorTest {
     private lateinit var navigator: OpenDataLinkNavigator<CongressmanClientModel>
     private val emptyResponse = OpenDataResponse<CongressmanClientModel>(emptyList())
 
-    @Before
+    @BeforeEach
     fun setUp() {
         navigator = mock()
     }

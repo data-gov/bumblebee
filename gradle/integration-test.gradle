@@ -1,28 +1,31 @@
 sourceSets {
   integrationTest {
-    compileClasspath += main.output + test.output
-    runtimeClasspath += main.output + test.output
-    kotlin.srcDirs = ['src/test/integration/kotlin']
-    resources.srcDirs = ['src/test/integration/resources']
+    kotlin.srcDir file('src/test/integration/kotlin')
+    resources.srcDir file('src/test/integration/resources')
+    compileClasspath += sourceSets.main.output + configurations.testRuntime
+    runtimeClasspath += output + compileClasspath
   }
 }
 
 configurations {
-  integrationTestCompile.extendsFrom testCompile
-  integrationTestRuntime.extendsFrom testRuntime
+  integrationTestImplementation.extendsFrom testImplementation
+  integrationTestRuntime.extendsFrom testRuntimeOnly
 }
 
 task integrationTest(type: Test) {
-  integrationTest.testClassesDirs = sourceSets.integrationTest.output.classesDirs
+  useJUnitPlatform()
+  failFast = true
+
+  description = 'Runs integration tests.'
+  group = 'verification'
+
+  testClassesDirs = sourceSets.integrationTest.output.classesDirs
   classpath = sourceSets.integrationTest.runtimeClasspath
-
-  reports {
-    html.destination file("${reporting.baseDir}/tests/integration-test")
-  }
+  mustRunAfter test
 }
 
-idea {
-  module {
-    scopes.TEST.plus += [configurations.integrationTestCompile]
-  }
+dependencies {
+  integrationTestRuntime 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
 }
+
+check.dependsOn integrationTest

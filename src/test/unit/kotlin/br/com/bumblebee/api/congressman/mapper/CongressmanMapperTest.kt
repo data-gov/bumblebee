@@ -3,7 +3,7 @@ package br.com.bumblebee.api.congressman.mapper
 import br.com.bumblebee.api.congressman.client.model.CONGRESSMAN_CLIENT_DETAILS_MODEL_FIXTURE
 import br.com.bumblebee.api.congressman.repository.model.CONGRESSMAN_FIXTURE
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 internal class CongressmanMapperTest {
 

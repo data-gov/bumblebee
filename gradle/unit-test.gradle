@@ -1,6 +1,13 @@
+test {
+  useJUnitPlatform()
+}
+
 sourceSets {
   test {
-    kotlin.srcDirs = ['src/test/unit/kotlin']
-    resources.srcDirs = ['src/test/unit/resources']
+    kotlin.srcDir file('src/test/unit/kotlin')
+    resources.srcDir file('src/test/unit/resources')
+    compileClasspath += sourceSets.main.output + configurations.testRuntime
+    runtimeClasspath += output + compileClasspath
   }
 }
+
