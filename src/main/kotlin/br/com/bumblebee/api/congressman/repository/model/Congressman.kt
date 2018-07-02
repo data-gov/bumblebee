@@ -18,8 +18,7 @@ data class Congressman(
     val birthState: String?,
     val birthCity: String,
     val status: List<CongressmanStatus>,
-    val office: Office,
-    val expenses: List<Expense>
+    val office: Office
 )
 
 data class CongressmanStatus(

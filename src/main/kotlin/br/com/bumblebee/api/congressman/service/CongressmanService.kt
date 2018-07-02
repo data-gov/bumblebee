@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class CongressmanService(private val client: CongressmanClient,
-                         private val repository: CongressmanRepository,
-                         private val expenseService: ExpenseService) {
+                         private val repository: CongressmanRepository) {
 
     private val logger = KotlinLogging.logger {}
 
@@ -60,8 +59,7 @@ class CongressmanService(private val client: CongressmanClient,
     private fun congressmanDetails(id: Int): Congressman {
         logger.info { "  Start fetching congressman $id details. " }
         val congressmanWithDetails = client.get(id).congressmanDetails
-        val congressmanExpenses = expenseService.getAllCongressmanExpenses(id)
-        return toCongressman(congressmanWithDetails, congressmanExpenses)
+        return toCongressman(congressmanWithDetails)
     }
 
     private fun OpenDataResponse<CongressmanClientModel>.iterator(): OpenDataIterator<CongressmanClientModel> =

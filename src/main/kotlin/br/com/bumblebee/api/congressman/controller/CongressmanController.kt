@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class CongressmanController(val service: CongressmanService) {
 
-    @GetMapping(path = arrayOf("/congressmen"))
+    @GetMapping(path = ["/congressmen"])
     fun get() = service.saveAllCongressman()
 }
 
