@@ -18,7 +18,7 @@ fun toCongressman(congressman: CongressmanDetailsClientModel) =
         congressman.socialMedia,
         congressman.websiteUrl,
         congressman.birthState,
-        congressman.birthCity,
+        congressman.birthCity ?: "",
         createStatus(congressman.lastStatus),
         creteOffice(congressman.lastStatus.office)
     )

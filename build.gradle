@@ -1,7 +1,7 @@
 buildscript {
   ext {
-    kotlinVersion = "1.2.21"
-    springBootVersion = "2.0.0.RC1"
+    kotlinVersion = "1.2.50"
+    springBootVersion = "2.1.0.BUILD-SNAPSHOT"
   }
 
   repositories {
@@ -12,12 +12,12 @@ buildscript {
   }
 
   dependencies {
-    classpath "com.gradle:build-scan-plugin:1.11"
+    classpath "com.gradle:build-scan-plugin:1.14"
     classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-    classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
+    classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
     classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-    classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC6-3"
+    classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC6-4"
   }
 }
 
@@ -26,7 +26,6 @@ apply plugin: "com.gradle.build-scan"
 apply plugin: "idea"
 apply plugin: "jacoco"
 apply plugin: "jdepend"
-apply plugin: "findbugs"
 apply plugin: "application"
 apply plugin: "kotlin-spring"
 apply plugin: "org.springframework.boot"
@@ -45,56 +44,54 @@ repositories {
 
 dependencyManagement {
   imports {
-    mavenBom "org.springframework.cloud:spring-cloud-netflix:2.0.0.M6"
-    mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.M5"
+    mavenBom 'org.springframework.cloud:spring-cloud-openfeign:2.0.0.RC1'
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.M9"
     mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
   }
 }
 
 dependencies {
   compile "org.jetbrains.kotlin:kotlin-reflect"
-  compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
   compile "org.slf4j:slf4j-api:1.7.25"
-  compile "com.squareup.okhttp3:okhttp:3.9.1"
-  compile "io.github.openfeign:feign-okhttp:9.5.1"
+  compile "com.google.guava:guava:25.1-jre"
+  compile "com.squareup.okhttp3:okhttp:3.10.0"
+  compile "io.github.openfeign:feign-okhttp:9.7.0"
 
-  compile "io.github.microutils:kotlin-logging:1.5.3"
-  compile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.1"
-  compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.4.1"
+
+  compile "io.github.microutils:kotlin-logging:1.5.4"
+  compile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.3"
+  compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6"
 
   compile "org.springframework.data:spring-data-mongodb"
   compile "org.springframework.boot:spring-boot-starter-web"
   compile "org.springframework.boot:spring-boot-starter-actuator"
-  compile "org.springframework.cloud:spring-cloud-starter-feign:2.0.0.M2"
-  compile "org.springframework.cloud:spring-cloud-starter-hystrix:2.0.0.M2"
 
+  compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
-  testCompile "junit:junit:4.12"
-  testCompile "org.mockito:mockito-core:2.15.0"
-  testCompile "org.mockito:mockito-inline:2.15.0"
-  testCompile "io.rest-assured:rest-assured:3.0.7"
+  testCompile "org.mockito:mockito-core:2.19.0"
+  testCompile "org.mockito:mockito-inline:2.19.0"
+  testCompile "io.rest-assured:rest-assured:3.1.0"
   testCompile "org.jetbrains.kotlin:kotlin-test-junit"
-  testCompile "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
+  testCompile "com.nhaarman:mockito-kotlin-kt1.1:1.6.0"
 
   testCompile "org.springframework.boot:spring-boot-starter-test"
-  testCompile "com.github.tomakehurst:wiremock-standalone:2.15.0"
+  testCompile "com.github.tomakehurst:wiremock-standalone:2.18.0"
 }
 
 task wrapper(type: Wrapper) {
   description = "Generates gradlew[.bat] scripts"
-  gradleVersion = "4.5.1"
+  gradleVersion = "4.7"
 }
 
 apply from: "${rootProject.rootDir}/gradle/git.gradle"
 apply from: "${rootProject.rootDir}/gradle/kotlin.gradle"
 apply from: "${rootProject.rootDir}/gradle/linter.gradle"
 apply from: "${rootProject.rootDir}/gradle/jdepend.gradle"
-apply from: "${rootProject.rootDir}/gradle/findbugs.gradle"
 apply from: "${rootProject.rootDir}/gradle/unit-test.gradle"
 apply from: "${rootProject.rootDir}/gradle/build-scan.gradle"
 apply from: "${rootProject.rootDir}/gradle/integration-test.gradle"
 apply from: "${rootProject.rootDir}/gradle/coverage.gradle"
 
-defaultTasks "clean", "compileKotlin", "detektCheck", "findbugsMain", "test", "integrationTest", "jacocoTestReport",
-  "bootJar"
+defaultTasks "clean", "compileKotlin", "detektCheck", "test", "integrationTest", "jacocoTestReport", "bootJar"

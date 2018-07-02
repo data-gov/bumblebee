@@ -1,7 +1,7 @@
 package br.com.bumblebee.api.congressman.client.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import java.util.Date
+import java.util.*
 
 data class CongressmanClientModel(
     val id: Int,
@@ -29,7 +29,7 @@ data class CongressmanDetailsClientModel(
     @JsonProperty("sexo") val gender: String,
     @JsonProperty("urlWebsite") val websiteUrl: String?,
     @JsonProperty("ufNascimento") val birthState: String?,
-    @JsonProperty("municipioNascimento") val birthCity: String,
+    @JsonProperty("municipioNascimento") val birthCity: String?,
     @JsonProperty("ultimoStatus") val lastStatus: CongressmanDetailsClientStatus
 )
 

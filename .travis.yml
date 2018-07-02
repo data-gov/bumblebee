@@ -24,7 +24,6 @@ stages:
   - compile
   - code-quality
   - test
-  - integrationTest
   - coverage
 
 jobs:
@@ -36,15 +35,10 @@ jobs:
   - stage: code-quality
     script:
     - "./gradlew detektCheck"
-    - "./gradlew findbugsMain"
 
   - stage: test
     script:
     - "./gradlew test"
-
-  - stage: integrationTest
-    script:
-    - "./gradlew integrationTest"
 
   - stage: coverage
     script:
