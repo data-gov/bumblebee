@@ -8,7 +8,9 @@ sourceSets {
 }
 
 configurations {
-  integrationTestImplementation.extendsFrom testImplementation
+  integrationTestImplementation.extendsFrom testImplementation {
+    exclude group: "ch.qos.logback", module: "logback-classic"
+  }
   integrationTestRuntime.extendsFrom testRuntimeOnly
 }
 

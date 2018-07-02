@@ -13,3 +13,6 @@ build/
 
 # Mac Stuff
 .DS_Store
+
+#Database Volume
+database/
