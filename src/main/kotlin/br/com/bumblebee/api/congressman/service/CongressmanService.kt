@@ -43,7 +43,7 @@ class CongressmanService(private val client: CongressmanClient,
     private fun congressmanDetails(id: Int): Congressman {
         logger.info { "  Start fetching congressman $id details. " }
         val congressmanWithDetails = client.get(id).congressmanDetails
-        return toCongressman(congressmanWithDetails)
+        return toCongressman(congressmanWithDetails, emptyList())
     }
 
     private fun OpenDataResponse<CongressmanClientModel>.iterator(): OpenDataIterator<CongressmanClientModel> =
