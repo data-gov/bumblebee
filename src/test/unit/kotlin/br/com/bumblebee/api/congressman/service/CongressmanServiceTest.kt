@@ -9,13 +9,13 @@ import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.test.context.junit.jupiter.SpringExtension
 
-@RunWith(SpringRunner::class)
+@ExtendWith(SpringExtension::class)
 internal class CongressmanServiceTest {
 
     companion object {
@@ -30,7 +30,7 @@ internal class CongressmanServiceTest {
 
     private lateinit var service: CongressmanService
 
-    @Before
+    @BeforeEach
     fun setUp() {
         service = CongressmanService(client, repository)
     }
@@ -41,7 +41,7 @@ internal class CongressmanServiceTest {
         whenever(client.getAll(page = 2)).thenReturn(OpenDataResponse(emptyList(), emptyList()))
         whenever(client.get(ID)).thenReturn(CONGRESSMAN_DETAILS_CLIENT_RESPONSE_FIXTURE)
 
-        val allCongressman = service.saveAllCongressman()
+        service.saveAllCongressman()
 
         verify(client, times(2)).getAll(any(), any())
 

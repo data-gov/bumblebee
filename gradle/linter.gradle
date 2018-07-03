@@ -1,9 +1,9 @@
 detekt {
-  profile("main") {
+  defaultProfile {
     input = "$projectDir/src/main/kotlin"
     config = "$projectDir/config/linter/detekt.yml"
-    output = "$reportsDir/detekt"
-    disableDefaultRuleSets = false
+    output = "$buildDir/reports/detekt"
+    filters = ".*/resources/.*,.*/tmp/.*"
     outputName = "bumblebee"
     parallel = true
   }

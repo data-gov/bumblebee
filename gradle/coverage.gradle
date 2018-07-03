@@ -16,8 +16,8 @@ jacocoTestReport {
     xml.enabled true
     html.enabled true
 
-    xml.destination file("${reportsDir}/jacoco/report.xml")
-    html.destination file("${reportsDir}/jacoco/html")
+    xml.destination file("${buildDir}/reports/jacoco/report.xml")
+    html.destination file("${buildDir}/reports/jacoco/html")
   }
   afterEvaluate {
     executionData test, integrationTest
