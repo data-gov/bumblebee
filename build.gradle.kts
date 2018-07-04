@@ -6,6 +6,7 @@ plugins {
     id("org.springframework.boot") version "2.0.3.RELEASE"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC7-3"
     id("io.spring.dependency-management") version "1.0.5.RELEASE"
+    id("com.avast.gradle.docker-compose") version "0.8.0"
 
     jacoco
     jdepend
@@ -76,3 +77,4 @@ apply(from = "${rootProject.rootDir}/gradle/unit-test.gradle")
 apply(from = "${rootProject.rootDir}/gradle/build-scan.gradle")
 apply(from = "${rootProject.rootDir}/gradle/integration-test.gradle")
 apply(from = "${rootProject.rootDir}/gradle/coverage.gradle")
+apply(from = "${rootProject.rootDir}/gradle/docker-compose.gradle")

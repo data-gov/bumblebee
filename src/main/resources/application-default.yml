@@ -1,4 +1,4 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/bumblebee_db
+      uri: mongodb://localhost:${BUMBLEBEE_DB_TCP_27017:27017}/bumblebee_db
